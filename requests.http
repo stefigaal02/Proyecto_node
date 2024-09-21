@@ -1,0 +1,33 @@
+//creacion del usuario
+###
+POST http://localhost:9000/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre": "Julia Verdugo",
+    "edad": 40,
+    "email": "juliaV@ejemplo.com"
+}
+
+//mostrar todos los usuarios
+###
+GET http://localhost:9000/api/users HTTP/1.1
+
+//mostrar un usuario
+###
+GET http://localhost:9000/api/users/66ee247d0ce3f4429d391e6b HTTP/1.1
+
+//actualizar usuario
+###
+PUT http://localhost:9000/api/users/66ee0bf93766325058d74d26 HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre": "Diego Cruz",
+    "edad": 30,
+    "email": "diegoCruz@ejemplo.com"
+}
+
+//eliminar usuario
+###
+DELETE http://localhost:9000/api/users/66ee248a0ce3f4429d391e6d HTTP/1.1
