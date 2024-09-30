@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "node src/index.js",  
+    "dev": "nodemon src/index.js"  
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -17,5 +17,6 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.5"
-  }
+  },
+  "description": ""
 }
