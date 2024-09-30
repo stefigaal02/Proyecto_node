@@ -1,7 +1,8 @@
 const express = require("express");
 const userSchema = require("../models/user");
 const contactoSchema = require("../models/contacto");
-const temaSchema = require("./models/Tema"); 
+const temaSchema = require("../models/tema");
+const comentarioSchema = require("../models/comentario");
 
 const router = express.Router();
 
@@ -111,6 +112,48 @@ router.delete('/temas/:id', (req, res) => {
         .deleteOne({ _id: id })
         .then((data) => res.status(200).json(data))
         .catch((error) => res.status(500).json({ message: error }));
+});
+
+// Crear un comentario relacionado a un tema
+router.post('/comentarios', (req, res) => {
+    const comentario = new comentarioSchema(req.body);
+    comentario
+        .save()
+        .then((data) => res.status(201).json(data))
+        .catch((error) => res.status(500).json({ message: error.message }));
+});
+
+// Obtener todos los comentarios de un tema
+router.get('/comentarios/tema/:temaId', (req, res) => {
+    const { temaId } = req.params;
+    comentarioSchema.find({ temaId })
+        .then((data) => res.status(200).json(data))
+        .catch((error) => res.status(500).json({ message: error.message }));
+});
+
+// Obtener un comentario por ID
+router.get('/comentarios/:id', (req, res) => {
+    const { id } = req.params;
+    comentarioSchema.findById(id)
+        .then((data) => res.status(200).json(data))
+        .catch((error) => res.status(500).json({ message: error.message }));
+});
+
+// Actualizar un comentario
+router.put('/comentarios/:id', (req, res) => {
+    const { id } = req.params;
+    const { mensaje, autor } = req.body;
+    comentarioSchema.updateOne({ _id: id }, { $set: { mensaje, autor } })
+        .then((data) => res.status(200).json(data))
+        .catch((error) => res.status(500).json({ message: error.message }));
+});
+
+// Eliminar un comentario
+router.delete('/comentarios/:id', (req, res) => {
+    const { id } = req.params;
+    comentarioSchema.deleteOne({ _id: id })
+        .then((data) => res.status(200).json(data))
+        .catch((error) => res.status(500).json({ message: error.message }));
 });
 
 module.exports = router;
