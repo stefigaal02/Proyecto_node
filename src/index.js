@@ -11,7 +11,8 @@ const port = process.env.PORT || 9000;
 app.use(cors({
     allowedHeaders: '*',
     origin: '*',
-    methods: '*'
+    methods: '*',
+    credentials: true
 }));
 
 //middlewarwe
